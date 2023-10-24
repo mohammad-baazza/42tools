@@ -3,6 +3,8 @@
 #include <string>
 #include "main.hpp"
 
+int s;
+
 void open_file(std::ofstream &file, std::string &name)
 {
     file.open(name, std::ios::out | std::ios::app);
@@ -63,13 +65,19 @@ void    open_and_fill(char *class_name, int type)
     filename = class_name;
     if (type == HPP)
     {
-        filename.append(".class.hpp");
+        if (s)
+            filename.append(".hpp");
+        else
+            filename.append(".class.hpp");
         open_file(file, filename);
         fill_hpp_file(file, filename, class_name);
     }
     else if (type == CPP)
     {
-        filename.append(".class.cpp");
+        if (s)
+            filename.append(".cpp");
+        else
+            filename.append(".class.cpp");
         open_file(file, filename);
         fill_cpp_file(file, filename, class_name);
     }
@@ -104,7 +112,9 @@ int main(int argc, char *argv[])
     {
         if (!std::strcmp(argv[1], "-h"))
             show_help();
-        for (int i = 0 ; i < argc ; i++)
+        else if (!std::strcmp(argv[1], "-s"))
+            s = 1;
+        for (int i = s + 1 ; i < argc ; i++)
         {
             if (!check_name_validity(argv[i]))
                 std::cerr << "Error : Bad name" << std::endl;
@@ -116,6 +126,6 @@ int main(int argc, char *argv[])
         }
     }
     else
-        std::cout << "usage : -h | [[-s] class_names ..." << std::endl;
+        std::cout << "usage : -h | [-s] class_names ..." << std::endl;
     return (0);
 }
