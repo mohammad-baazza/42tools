@@ -95,7 +95,7 @@ void    open_and_fill(char *class_name, int type)
 void    show_help(char *program_name)
 {
     std::cout << "\tclasses' .cpp and .hpp files creator" << std::endl << std::endl;
-    std::cout << "\tusage : " << program_name << " -h | [-s] class_names ..." << std::endl << std::endl;
+    std::cout << "\tusage : " << program_name << " -h | [-sd] class_names ..." << std::endl << std::endl;
     std::cout << "\t\ts : create with simple filenames (without *.class*)" << std::endl;
     std::cout << "\t\th : show help" << std::endl;
     std::exit(0);
@@ -177,6 +177,6 @@ int main(int argc, char *argv[])
             create_files(argv);
     }
     else
-        std::cout << "usage : " << argv[0] << " -h | [-s] class_names ..." << std::endl;
+        std::cout << "usage : " << argv[0] << " -h | [-sd] class_names ..." << std::endl;
     return (0);
 }
