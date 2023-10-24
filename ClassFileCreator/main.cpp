@@ -98,6 +98,7 @@ void    show_help(char *program_name)
     std::cout << "\tusage : " << program_name << " -h | [-sd] class_names ..." << std::endl << std::endl;
     std::cout << "\t\ts : create with simple filenames (without *.class*)" << std::endl;
     std::cout << "\t\th : show help" << std::endl;
+    std::cout << "\t\td : delete class related files" << std::endl;
     std::exit(0);
 }
 
