@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
         for (int i = s + 1 ; i < argc ; i++)
         {
             if (!check_name_validity(argv[i]))
-                std::cerr << "Error : Bad name" << std::endl;
+                std::cerr << "Error : " << argv[i] << " ; Bad name" << std::endl;
             else
             {
                 open_and_fill(argv[i], HPP);
