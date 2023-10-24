@@ -9,6 +9,8 @@ to istall run the **install.sh** script and add this to your shell configuration
 
 and now you sould be able to use it with the command ```hpp``` (use ```hpp -h``` for help)
 
+>to update you need just to rerun the script with the new source files
+
 ### examples
 
 <img width="238" alt="Screen Shot 2023-10-24 at 2 47 31 AM" src="https://github.com/mohammad-baazza/42tools/assets/115046361/1366d134-8b0a-4c68-900d-3505efdadc54">
@@ -23,3 +25,5 @@ and now you sould be able to use it with the command ```hpp``` (use ```hpp -h```
 
 > hint 2 : you can use ```-s``` to create files without **".class."** in the middle of filenames
 
+> hint 3 : you can use ```-d``` to delete class related files just like how you created them
+> and you can combine it with ```-s``` to delete the simple ones
