@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdio>
 #include "main.hpp"
 
 int s;
@@ -55,10 +56,9 @@ void    fill_cpp_file(std::ofstream &file, std::string &filename, char *class_na
     file << class_name << " const\t&" << class_name << "::operator = (" << class_name << " const &rhs) {}";
 }
 
-void    open_and_fill(char *class_name, int type)
+std::string get_filename(char *class_name, int type)
 {
-    std::string     filename;
-    std::ofstream   file;
+    std::string filename;
 
     filename = class_name;
     if (type == HPP)
@@ -67,18 +67,28 @@ void    open_and_fill(char *class_name, int type)
             filename.append(".hpp");
         else
             filename.append(".class.hpp");
-        open_file(file, filename);
-        fill_hpp_file(file, filename, class_name);
     }
-    else if (type == CPP)
+    if (type == CPP)
     {
         if (s)
             filename.append(".cpp");
         else
             filename.append(".class.cpp");
-        open_file(file, filename);
-        fill_cpp_file(file, filename, class_name);
     }
+    return (filename);
+}
+
+void    open_and_fill(char *class_name, int type)
+{
+    std::string     filename;
+    std::ofstream   file;
+
+    filename = get_filename(class_name, type);
+    open_file(file, filename);
+    if (type == HPP)
+        fill_hpp_file(file, filename, class_name);
+    else if (type == CPP)
+        fill_cpp_file(file, filename, class_name);
     file.close();
 }
 
@@ -104,24 +114,67 @@ bool    check_name_validity(char *class_name)
     return (1);
 }
 
+void    delete_files(char *argv[])
+{
+    std::string filename;
+
+    for (int i = 2 ; argv[i] ; i++)
+    {
+        filename = get_filename(argv[i], CPP);
+        if (std::remove(filename.c_str()))
+            std::cerr << "Error removing file : " << filename << std::endl;
+        filename = get_filename(argv[i], HPP);
+        if (std::remove(filename.c_str()))
+            std::cerr << "Error removing file : " << filename << std::endl;
+    }
+}
+
+int get_options(char *argv1)
+{
+    int         result = 0;
+    std::string options = argv1;
+
+    if (argv1[0] != '-')
+        return (result);
+    if (options.find_first_of('h') != std::string::npos)
+        result |= HELP;
+    if (options.find_first_of('s') != std::string::npos)
+        result |= SIMPLE;
+    if (options.find_first_of('d') != std::string::npos)
+        result |= DELETE;
+    return (result);
+}
+
+void    create_files(char *argv[])
+{
+    for (int i = s + 1 ; argv[i] ; i++)
+    {
+        if (!check_name_validity(argv[i]))
+            std::cerr << "Error : " << argv[i] << " ; Bad name" << std::endl;
+        else
+        {
+            open_and_fill(argv[i], HPP);
+            open_and_fill(argv[i], CPP);
+        }
+    }
+
+}
+
 int main(int argc, char *argv[])
 {
+    int result;
+
     if (argc > 1)
     {
-        if (!std::strcmp(argv[1], "-h"))
+        result = get_options(argv[1]);
+        if (result & HELP)
             show_help(argv[0]);
-        else if (!std::strcmp(argv[1], "-s"))
+        if (result & SIMPLE)
             s = 1;
-        for (int i = s + 1 ; i < argc ; i++)
-        {
-            if (!check_name_validity(argv[i]))
-                std::cerr << "Error : " << argv[i] << " ; Bad name" << std::endl;
-            else
-            {
-                open_and_fill(argv[i], HPP);
-                open_and_fill(argv[i], CPP);
-            }
-        }
+        if (result & DELETE)
+            delete_files(argv);
+        else
+            create_files(argv);
     }
     else
         std::cout << "usage : " << argv[0] << " -h | [-s] class_names ..." << std::endl;
