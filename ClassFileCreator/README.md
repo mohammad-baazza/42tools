@@ -1,9 +1,11 @@
 # this is a simple program that creates classes cpp and hpp files with canonical form based on the class name
 ## it can be useful for 42 students while doing the cpp modules
 
-to istall run the **install.sh** script and add this to your shell configuration and reload it
+to istall run the **install.sh** script and add this to your shell configuration :
 
 ``` PATH=$PATH:~/.bin ```
+
+ and reload it
 
 and now you sould be able to use it with the command ```hpp``` (use ```hpp -h``` for help)
 
