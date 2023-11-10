@@ -51,9 +51,9 @@ void    fill_cpp_file(std::ofstream &file, std::string &filename, char *class_na
 {
     file << "#include \"" << filename.substr(0, filename.length() - 4) << ".hpp\"" << std::endl << std::endl;
     file << class_name << "::" << class_name << "(void) {}" << std::endl << std::endl;
-    file << class_name << "::" << class_name << '(' << class_name << " const &copy) {}" << std::endl << std::endl;
+    file << class_name << "::" << class_name << '(' << class_name << " const &copy)" << std::endl << "{" << std::endl << "\t*this = copy;" << std::endl << "}" << std::endl << std::endl;
     file << class_name << "::~" << class_name << "(void) {}" << std::endl << std::endl;
-    file << class_name << " const\t&" << class_name << "::operator = (" << class_name << " const &rhs) {}";
+    file << class_name << " const\t&" << class_name << "::operator = (" << class_name << " const &rhs)" << std::endl << "{" << std::endl << "\treturn (*this);" << std::endl << "}";
 }
 
 std::string get_filename(char *class_name, int type)
