@@ -15,9 +15,8 @@ you can use it with the command ```hpp``` (use ```hpp -h``` for help)
 
 ### that caused
 
-<img width="439" alt="Screen Shot 2023-10-24 at 2 42 16 AM" src="https://github.com/mohammad-baazza/42tools/assets/115046361/d543ba0e-f769-4744-9511-3a2b5da58074">
-<img width="448" alt="Screen Shot 2023-10-24 at 2 42 27 AM" src="https://github.com/mohammad-baazza/42tools/assets/115046361/a9306b6d-a6eb-4ecf-a450-a31901c30661">
-
+<img width="537" alt="Screen Shot 2023-11-21 at 2 25 46 PM" src="https://github.com/mohammad-baazza/42tools/assets/115046361/b3fb9aa4-36f5-4a5e-96d8-528234b7e15b">
+<img width="537" alt="Screen Shot 2023-11-21 at 2 25 56 PM" src="https://github.com/mohammad-baazza/42tools/assets/115046361/506dd6b0-6723-4b38-83c1-bfe6f0169cdc">
 
 > hint 2 : you can use ```-s``` to create files without **".class."** in the middle of filenames
 
