@@ -1,0 +1,3 @@
+[submodule "Class-File-Creator"]
+	path = Class-File-Creator
+	url = git@github.com:mohammad-baazza/ClassFileCreator.git
